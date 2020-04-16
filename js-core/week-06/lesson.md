@@ -5,21 +5,21 @@
 **What we will learn today?**
 
 In this class you will learn when and how use loops in a programming language, one of the most important utility of computers, that is repeat tasks in a very short time very easy.
-To solve repetitive problems you will use loops `while` and `for` 
-In addition, you will learn how to use `callback functions`   
+To solve repetitive problems you will use loops `while` and `for`
+In addition, you will learn how to use `callback functions`
 
 ## Index
 
-* [Control Flow](#control-flow)
-  * [Conditional Execution](#conditional-execution)
-  * [While loops](#while-loops)
-  * [For loops](#for-loops)
-  * [Break a loop](#break-a-loop)
-  * [Switch statement](#switch-statement)
-  * [Other ways of looping](#other-ways-of-looping)
-* [Callback functions](#callback-functions)
-  * [Arrow functions](#arrow-functions)
-  * [Chaining](#chaining)
+- [Control Flow](#control-flow)
+  - [Conditional Execution](#conditional-execution)
+  - [While loops](#while-loops)
+  - [For loops](#for-loops)
+  - [Break a loop](#break-a-loop)
+  - [Switch statement](#switch-statement)
+  - [Other ways of looping](#other-ways-of-looping)
+- [Callback functions](#callback-functions)
+  - [Arrow functions](#arrow-functions)
+  - [Chaining](#chaining)
 
 ## Control Flow
 
@@ -37,10 +37,10 @@ By introducing the `if` statement, a branch is created in the execution of the p
 ```js
 var age = 24;
 if (age > 18) {
-    console.log("John is an adult.")
+  console.log("John is an adult.");
 } else {
-    console.log("John is a young boy."); 
-} 
+  console.log("John is a young boy.");
+}
 ```
 
 The statements inside of each `{ }` represent each branch on the logic.
@@ -73,7 +73,7 @@ while (count <= 100) {
 }
 ```
 
-The `while` statement creates a loop. The syntax is somehow similar to the `if` statement, it evaluates a condition inside the parentheses `(true|false)` and then it executes the code inside the `{ }` block only if that condition evaluates to `true`. 
+The `while` statement creates a loop. The syntax is somehow similar to the `if` statement, it evaluates a condition inside the parentheses `(true|false)` and then it executes the code inside the `{ }` block only if that condition evaluates to `true`.
 
 ### Exercise
 
@@ -81,9 +81,12 @@ Log the Apollo 11 countdown, use the message provided as the last output.
 It starts from 8 till 0!
 
 ```js
-var apolloCountdownMessage = "all engine running... LIFT-OFF!";
-var countdown = 8;
-
+let apolloCountdownMessage = "all engine running... LIFT-OFF!";
+let countdown = 8;
+while (countdown >= 0) {
+  console.log(countdown);
+  countdown--;
+}
 console.log(apolloCountdownMessage);
 ```
 
@@ -124,6 +127,10 @@ Calculate the exponential of the even numbers from 5 to 20
 Using a for loop and the helper functions provided.
 
 ```js
+for (let i = 6; i < 20; i += 2) {
+  console.log("The exponential number of: " + i + " is " + i * i);
+}
+
 function exponential(number) {
   return number * number;
 }
@@ -170,8 +177,10 @@ Write a program that given an array of strings, logs the first one that has leng
 
 ```js
 const names = ["Daniel", "James", "Irina", "Mozafar", "Ashleigh"];
-for (var i = 0; i < names.length; i++) {
-
+for (let i = 0; i < names.length; i++) {
+  if (names[i].length > 6) {
+    console.log(names[i]);
+  }
 }
 ```
 
@@ -205,15 +214,15 @@ switch (os) {
 }
 ```
 
-The program will evaluate the condition inside the parentheses `( )` and run the matching `case` statement. Note that after each statement there is a `break`, this ensures that the `switch` block exits, if omitted it will continue executing and might run code that was not intended to be run. 
+The program will evaluate the condition inside the parentheses `( )` and run the matching `case` statement. Note that after each statement there is a `break`, this ensures that the `switch` block exits, if omitted it will continue executing and might run code that was not intended to be run.
 
 ### Exercise
 
 Using a switch statement call the matching operative system function for each system:
 
-* windows
-* linux
-* osx
+- windows
+- linux
+- osx
 
 Consider also the case where other values can be passed to the init function,
 if the system is not supported call the function prompt
@@ -231,11 +240,23 @@ function startOSX() {
 function prompt() {
   console.log("The OS provided is not supported");
 }
-
 function init(os) {
-  // write your code here
+  switch (os) {
+    case "windows":
+      startWindows();
+      break;
+    case "linux":
+      startLinux();
+      break;
+    case "osx":
+      startOSX();
+      break;
+    default:
+      prompt();
+      break;
+  }
 }
-
+init("windows");
 init("linux");
 init("osx");
 init("other");
@@ -251,7 +272,7 @@ The OS provided is not supported
 
 ### Other ways of looping
 
-As studied in the previous class some array methods will loop through the items in the array and call a function. For example: 
+As studied in the previous class some array methods will loop through the items in the array and call a function. For example:
 
 ```js
 var names = ["Daniel", "Mozafar", "Irina"];
@@ -263,10 +284,10 @@ names.forEach(loop);
 
 Just like `forEach` there are many others that will also loop the items of an array, here are some examples:
 
-* `.every()`
-* `.some()`
-* `.map()`
-* `.filter()`
+- `.every()`
+- `.some()`
+- `.map()`
+- `.filter()`
 
 Notice that those methods return an array when executed, on contrary to `forEach()` that returns `undefined`. This makes them ideal when you need to modify data contained on the array.
 
@@ -274,7 +295,7 @@ Notice that those methods return an array when executed, on contrary to `forEach
 
 A function that we provide to a method is commonly called a _callback_ function. The term highlights that although we _provide_ the `double` function, the `.map()` method _calls_ it. (Notice how we never write `double()` to call the function).
 
-We'll see callback functions used a lot more in the coming weeks. 
+We'll see callback functions used a lot more in the coming weeks.
 
 Often, when a function is only needed for a map operation, it can be declared _inline_. Let's try copying and pasting the function declaration inside of the `.map()` method call.
 
@@ -301,7 +322,7 @@ There is an alternative syntax to write a function that was introduced in newer 
 ```js
 var numbers = [1, 2, 3];
 var numbersDoubled = numbers.map((number) => {
-  return number * 2
+  return number * 2;
 });
 ```
 
@@ -311,7 +332,7 @@ There is one last thing you can do to make your code shorter. If you remove the 
 
 ```js
 var numbers = [1, 2, 3];
-var numbersDoubled = numbers.map(number => number * 2);
+var numbersDoubled = numbers.map((number) => number * 2);
 ```
 
 In the example above, the expression `number * 2` is automatically returned because it comes directly after the `=>` arrow (instead of coming after curly braces). This is called an `implicit return`.
